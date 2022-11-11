@@ -1,5 +1,5 @@
 enum Type = {A, B, C, D};
-array[Type,Type] of var 0..1: allows = [|
+array[Type,Type] of 0..1: allows = [|
 % A, B, C, D
   0, 1, 0, 0 | % A
   1, 0, 1, 0 | % B
@@ -11,7 +11,7 @@ int: NrSections;
 
 set of int: Sections = 1..NrSections;
 
-array[Sections,Sections] of var 0..1: neighborship;
+array[Sections,Sections] of 0..1: neighborship;
 
 array[Sections] of var Type: indicators;
 

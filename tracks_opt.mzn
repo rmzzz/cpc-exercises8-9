@@ -8,7 +8,6 @@ array[Type,Type] of 0..1: allows = [|
 |];
 
 array[Type] of int: costs = [1, 2, 3, 4];
-%var int: totalCosts;
 
 int: NrSections;
 
@@ -21,12 +20,15 @@ array[Sections] of var Type: indicators;
 constraint forall (i,j in Sections where i<j) 
   (neighborship[i, j]==1 -> allows[indicators[i],indicators[j]] == 1);
 
-%constraint totalCosts = sum(i in Sections)(d[i,j]);
+
 var int: c = sum(i in Sections)(costs[indicators[i]]);
 var int: d = max(i in Type)(count(indicators, i)) - min(i in Type)(count(indicators, i));
 
-%solve minimize c;
-%solve minimize d;
+solve minimize c;
+output ["indicators=\(indicators) c=\(c)\n"];
 
-solve satisfy;
-output ["c=\(c) d=\(d)\n"];
+%solve minimize d;
+%output ["indicators=\(indicators) d=\(d)\n"];
+
+%solve satisfy;
+%output ["c=\(c) d=\(d)\n"];
